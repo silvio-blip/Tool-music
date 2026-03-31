@@ -1,0 +1,12 @@
+{
+  "name": "tool-music",
+  "version": "1.0.0",
+  "description": "Site de música para o bot",
+  "main": "cogs/musica/site de musicas/server.js",
+  "scripts": {
+    "start": "node cogs/musica/site de musicas/server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

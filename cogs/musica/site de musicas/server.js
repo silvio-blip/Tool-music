@@ -34,6 +34,8 @@ function formatDuration(seconds) {
     return `${mins}:${remainingSecs.toString().padStart(2, '0')}`;
 }
 
+const YTDLP_PATH = 'yt-dlp';
+
 function execPromise(command) {
     return new Promise((resolve, reject) => {
         exec(command, { maxBuffer: 50 * 1024 * 1024 }, (error, stdout, stderr) => {
@@ -53,7 +55,7 @@ async function searchSoundCloud(query) {
             .map(([k, v]) => `--${k} "${v}"`)
             .join(' ');
 
-        const cmd = `yt-dlp ${optsString} --dump-json --no-download -e "scsearch10:${query}"`;
+        const cmd = `${YTDLP_PATH} ${optsString} --dump-json --no-download -e "scsearch10:${query}"`;
         const output = await execPromise(cmd);
 
         const lines = output.trim().split('\n').filter(line => line.trim());
@@ -86,7 +88,7 @@ async function getAllResults(query, page = 0) {
     const results = [];
     const limit = 15;
     try {
-        const cmd = `yt-dlp --dump-json --no-download "scsearch15:${query}"`;
+        const cmd = `${YTDLP_PATH} --dump-json --no-download "scsearch15:${query}"`;
         const output = await execPromise(cmd);
 
         const lines = output.trim().split('\n').filter(line => line.trim());
@@ -127,7 +129,7 @@ async function getAllResults(query, page = 0) {
 
 async function getStreamUrl(url) {
     try {
-        const cmd = `yt-dlp --dump-json --no-download --no-check-certificate "${url}"`;
+        const cmd = `${YTDLP_PATH} --dump-json --no-download --no-check-certificate "${url}"`;
         const output = await execPromise(cmd);
         const info = JSON.parse(output);
 
