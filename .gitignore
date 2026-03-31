@@ -1,6 +1,6 @@
-.venv/
+node_modules/
 __pycache__/
-*.pyc
-*.pyo
+.pyc
 .env
-.pytest_cache/
+*.log
+.DS_Store
