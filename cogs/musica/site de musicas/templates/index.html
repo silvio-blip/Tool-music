@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 Tool Bot</title>
+    <link rel="icon" type="image/png" href="https://media.discordapp.net/attachments/1487374232886448248/1487375665459368026/correto_1446515346201776283_1774688288.png?ex=69cc35c8&is=69cae448&hm=d1fa6bceed2a2f49ae9b836376e8bc5a90e06b8d639214601d35e2e4d11e7d93&=&format=webp&quality=lossless">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app">
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="logo-container">
+                    <img src="https://media.discordapp.net/attachments/1487374232886448248/1487375665459368026/correto_1446515346201776283_1774688288.png?ex=69cc35c8&is=69cae448&hm=d1fa6bceed2a2f49ae9b836376e8bc5a90e06b8d639214601d35e2e4d11e7d93&=&format=webp&quality=lossless" alt="Tool Bot" class="site-logo">
+                    <span class="site-name">Tool Bot</span>
+                </div>
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar músicas...">
+                </div>
+                <div class="top-bar-right">
+                    <a href="https://discord.com/oauth2/authorize?client_id=1456684394180776100&permissions=8&integration_type=0&scope=bot" target="_blank" class="discord-btn">
+                        <i class="fa-brands fa-discord"></i>
+                        <span>Tool Bot</span>
+                    </a>
+                </div>
+            </header>
+
+            <div class="genre-filters">
+                <button class="genre-btn active" data-genre="all">Todos</button>
+                <button class="genre-btn" data-genre="funk">Funk</button>
+                <button class="genre-btn" data-genre="rap">Rap</button>
+                <button class="genre-btn" data-genre="trap">Trap</button>
+                <button class="genre-btn" data-genre="pop">Pop</button>
+                <button class="genre-btn" data-genre="sertanejo">Sertanejo</button>
+                <button class="genre-btn" data-genre="pagode">Pagode</button>
+            </div>
+
+            <section class="content">
+                <div class="track-list" id="trackList"></div>
+            </section>
+        </main>
+
+        <!-- Mobile Controls -->
+        <div class="mobile-controls">
+            <div class="mobile-progress">
+                <span id="mobileCurrentTime">0:00</span>
+                <div class="progress" id="mobileProgressContainer" onclick="seekMobile(event)">
+                    <div class="progress-fill" id="mobileProgressFill"></div>
+                </div>
+                <span id="mobileTotalTime">0:00</span>
+            </div>
+            <div class="controls mobile-player-controls">
+                <button class="control-btn" onclick="toggleShuffle()" id="mobileShuffleBtn" title="Aleatório">
+                    <i class="fa-solid fa-shuffle"></i>
+                </button>
+                <button class="control-btn" onclick="prevTrack()">
+                    <i class="fa-solid fa-backward-step"></i>
+                </button>
+                <button class="play-btn" onclick="togglePlay()" id="mobilePlayBtn">
+                    <i class="fa-solid fa-play"></i>
+                </button>
+                <button class="control-btn" onclick="nextTrack()">
+                    <i class="fa-solid fa-forward-step"></i>
+                </button>
+                <button class="control-btn" onclick="toggleRepeat()" id="mobileRepeatBtn" title="Repetir">
+                    <i class="fa-solid fa-repeat"></i>
+                </button>
+            </div>
+        </div>
+
+        <footer class="player">
+            <div class="track-info" id="trackInfo">
+                <div class="album-art" id="albumArt">
+                    <i class="fa-solid fa-music"></i>
+                </div>
+                <div class="track-text">
+                    <h4 id="trackTitle">Nenhuma música selecionada</h4>
+                    <p id="trackArtist">-</p>
+                </div>
+            </div>
+
+            <div class="player-center">
+                <div class="controls">
+                    <button class="control-btn" onclick="toggleShuffle()" id="shuffleBtn" title="Aleatório">
+                        <i class="fa-solid fa-shuffle"></i>
+                    </button>
+                    <button class="control-btn" onclick="prevTrack()">
+                        <i class="fa-solid fa-backward-step"></i>
+                    </button>
+                    <button class="play-btn" onclick="togglePlay()" id="playBtn">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                    <button class="control-btn" onclick="nextTrack()">
+                        <i class="fa-solid fa-forward-step"></i>
+                    </button>
+                    <button class="control-btn" onclick="toggleRepeat()" id="repeatBtn" title="Repetir">
+                        <i class="fa-solid fa-repeat"></i>
+                    </button>
+                </div>
+                <div class="progress-bar">
+                    <span id="currentTime">0:00</span>
+                    <div class="progress" id="progressContainer" onclick="seek(event)">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span id="totalTime">0:00</span>
+                </div>
+            </div>
+
+            <div class="volume-controls">
+                <button class="control-btn"><i class="fa-solid fa-volume-high"></i></button>
+                <input type="range" min="0" max="100" value="100" class="volume-slider" id="volumeSlider" onchange="setVolume(this.value)">
+            </div>
+        </footer>
+
+        <audio id="audioPlayer"></audio>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>
