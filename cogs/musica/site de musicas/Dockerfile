@@ -2,9 +2,9 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-RUN apk add --no-cache python3 py3-pip ffmpeg
+RUN apk add --no-cache python3 py3-pip ffmpeg curl
 
-RUN pip3 install --no-cache-dir yt-dlp
+RUN pip3 install --break-system-packages yt-dlp
 
 COPY package*.json ./
 RUN npm install
